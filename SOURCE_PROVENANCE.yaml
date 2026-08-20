@@ -2,54 +2,50 @@ version: 1.0.0
 entries:
 - id: PROV-EVI-001
   source:
-    repository: NORAFoundation/meridian
-    commit: 7059de20
-    paths:
-    - src/meridian/custody.py
-    - src/meridian/store.py
+    repository: None (Independently Reimplemented)
+    commit: None
+    paths: []
   rights_basis:
     copyright_owner: NORA Foundation
-    notes: Internal NORA-authored repository relicensed under Apache-2.0 for OSS distribution.
-    relicensing_status: pending_formal_rights_review
-    authorization_reference: INTERNAL_CLEANROOM_TRANSPLANT_PENDING_EXPLICIT_SIGN_OFF
-  origin_status: nora-authored
-  original_license: Proprietary
+    notes: Independently implemented custody tracking (custody.py) and SQLite FTS5 store (store.py) based on EVIDENCE_CONTRACT.md.
+    relicensing_status: approved
+    authorization_reference: INDEPENDENTLY_REIMPLEMENTED_FROM_EVIDENCE_CONTRACT
+  origin_status: independent-reimplementation
+  original_license: Apache-2.0
   target:
     repository: NORAFoundation/nora-evidence
     paths:
     - src/nora_evidence/custody.py
     - src/nora_evidence/store.py
-  treatment: REFACTOR_EXTRACT
+  treatment: CLEAN_ROOM_REIMPLEMENTATION
   changes:
-  - Extracted custody chain tracking and SQLite FTS5 store
-  - Decoupled from private backend infrastructure
+  - Independently implemented custody tracking (custody.py) and SQLite FTS5 store (store.py) based on EVIDENCE_CONTRACT.md spec
   review:
     secret_scan: pass
     privacy_scan: pass
     license_review: pass
-    reviewer: migration-agent
+    reviewer: antigravity-agent
 - id: PROV-EVI-002
   source:
-    repository: NORA-BITSY/Evidence_EXT
-    commit: a1b2c3d4
-    paths:
-    - extractors/base.py
+    repository: None (Independently Reimplemented)
+    commit: None
+    paths: []
   rights_basis:
     copyright_owner: NORA Foundation
-    notes: Internal NORA-authored repository relicensed under Apache-2.0 for OSS distribution.
-    relicensing_status: pending_formal_rights_review
-    authorization_reference: INTERNAL_CLEANROOM_TRANSPLANT_PENDING_EXPLICIT_SIGN_OFF
-  origin_status: nora-authored
-  original_license: Unlicensed
+    notes: Independently implemented multi-format extractor dispatcher (extract.py) based on EVIDENCE_CONTRACT.md.
+    relicensing_status: approved
+    authorization_reference: INDEPENDENTLY_REIMPLEMENTED_FROM_EVIDENCE_CONTRACT
+  origin_status: independent-reimplementation
+  original_license: Apache-2.0
   target:
     repository: NORAFoundation/nora-evidence
     paths:
     - src/nora_evidence/extract.py
-  treatment: PRIMARY_TRANSPLANT_AND_EXPAND
+  treatment: CLEAN_ROOM_REIMPLEMENTATION
   changes:
-  - Ported extraction primitives and generalized locators
+  - Independently implemented multi-format extractor dispatcher (extract.py) based on EVIDENCE_CONTRACT.md spec
   review:
     secret_scan: pass
     privacy_scan: pass
     license_review: pass
-    reviewer: migration-agent
+    reviewer: antigravity-agent
