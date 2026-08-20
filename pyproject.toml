@@ -2,6 +2,9 @@
 requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/nora_evidence"]
+
 [project]
 name = "nora_evidence"
 version = "0.0.1"
@@ -9,7 +12,9 @@ description = "Provenance-first evidence and record substrate with exact locator
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
-dependencies = []
+dependencies = [
+  "pydantic>=2.0"
+]
 
 [project.optional-dependencies]
 dev = [
