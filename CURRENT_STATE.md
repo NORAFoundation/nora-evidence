@@ -16,5 +16,5 @@ The required minimum vertical slice is complete and verified:
 
 ## Verification Evidence
 
-- `make test` / `pytest`: **6 passed in 0.12s**.
+- `make test` / `pytest`: **7 passed in 0.11s**.
 - Full end-to-end reconstructability and custody chain verification demonstrated in `tests/test_vertical_slice.py`.
