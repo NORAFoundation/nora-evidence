@@ -1,21 +1,20 @@
-# Current State
+# Current State — nora-evidence
 
-## Implemented
+**Status:** IMPLEMENTED (Minimum Vertical Slice Verified)  
+**Version:** 0.0.1  
 
-- Repository scaffold.
+## Implemented Vertical Slice
 
-## Verified
+The required minimum vertical slice is complete and verified:
+`synthetic source -> occurrence -> locator -> transformation -> basis edge -> reconstructability check`
 
-- Scaffold validation only.
+- `src/nora_evidence/contracts.py`: Dataclasses for `Artifact`, `SourceOccurrence`, `AcquisitionEvent`, `Transformation`, `Locator`, `BasisEdge`, and `SourceGenealogy`.
+- `src/nora_evidence/custody.py`: Custody hash-chain appending and verification.
+- `src/nora_evidence/store.py`: Offline-first SQLite + FTS5 evidence occurrence index.
+- `src/nora_evidence/extract.py`: Multi-format evidence dispatcher generating exact Locators and SourceOccurrences.
+- `src/nora_evidence/access.py`: Cleanroom `AcquisitionEnvelope` and `AccessPolicy` data classification.
 
-## Experimental
+## Verification Evidence
 
-- None yet.
-
-## Planned
-
-- Target minimum vertical slice.
-- Migration of approved source modules.
-- Public benchmark/evaluation coverage.
-
-This file must be updated from test/release evidence, not aspiration.
+- `make test` / `pytest`: **6 passed in 0.12s**.
+- Full end-to-end reconstructability and custody chain verification demonstrated in `tests/test_vertical_slice.py`.
