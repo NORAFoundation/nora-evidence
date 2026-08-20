@@ -1,2 +1,25 @@
-version: '1.0'
-entries: []
+version: 1.0.0
+entries:
+  - id: PROV-EVID-001
+    source:
+      repository: NORAFoundation/meridian
+      commit: 7059de20
+      paths:
+        - src/meridian/custody.py
+        - src/meridian/store.py
+    origin_status: nora-authored
+    original_license: Proprietary
+    target:
+      repository: NORAFoundation/nora-evidence
+      paths:
+        - src/nora_evidence/custody.py
+        - src/nora_evidence/store.py
+    treatment: REFACTOR_EXTRACT
+    changes:
+      - Generalized civil litigation assumptions to generic record preservation
+      - Extracted custody hash-chain verification and SQLite/FTS5 store baseline
+    review:
+      secret_scan: pass
+      privacy_scan: pass
+      license_review: pass
+      reviewer: migration-agent
