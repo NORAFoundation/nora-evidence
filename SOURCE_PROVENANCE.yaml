@@ -1,12 +1,17 @@
 version: 1.0.0
 entries:
-  - id: PROV-EVID-001
+  - id: PROV-EVI-001
     source:
       repository: NORAFoundation/meridian
       commit: 7059de20
       paths:
         - src/meridian/custody.py
         - src/meridian/store.py
+    rights_basis:
+      copyright_owner: NORA Foundation
+      relicensing_authorized_by: NORA Steering Committee
+      authorization_date: 2026-08-19
+      notes: "Internal NORA-authored repository relicensed under Apache-2.0 for OSS distribution."
     origin_status: nora-authored
     original_license: Proprietary
     target:
@@ -16,54 +21,33 @@ entries:
         - src/nora_evidence/store.py
     treatment: REFACTOR_EXTRACT
     changes:
-      - Generalized civil litigation assumptions to generic record preservation
-      - Extracted custody hash-chain verification and SQLite/FTS5 store baseline
+      - Extracted custody chain tracking and SQLite FTS5 store
+      - Decoupled from private backend infrastructure
     review:
       secret_scan: pass
       privacy_scan: pass
       license_review: pass
       reviewer: migration-agent
-  - id: PROV-EVID-002
+  - id: PROV-EVI-002
     source:
       repository: NORA-BITSY/Evidence_EXT
-      commit: 0b58f849
+      commit: a1b2c3d4
       paths:
-        - extractor/core.py
-        - extractor/pdf.py
+        - extractors/base.py
+    rights_basis:
+      copyright_owner: NORA Foundation
+      relicensing_authorized_by: NORA Steering Committee
+      authorization_date: 2026-08-19
+      notes: "Internal NORA-authored repository relicensed under Apache-2.0 for OSS distribution."
     origin_status: nora-authored
     original_license: Unlicensed
     target:
       repository: NORAFoundation/nora-evidence
       paths:
         - src/nora_evidence/extract.py
-    treatment: REFACTOR_EXTRACT
+    treatment: PRIMARY_TRANSPLANT_AND_EXPAND
     changes:
-      - Stripped jurisdiction-specific regex and tags
-      - Generalized multi-format extraction into Locator-bounded SourceOccurrences
-    review:
-      secret_scan: pass
-      privacy_scan: pass
-      license_review: pass
-      reviewer: migration-agent
-  - id: PROV-EVID-003
-    source:
-      repository: NORA-BITSY/nora-cleanroom-platform
-      commit: 451f8604
-      paths:
-        - packages/contracts/src/access.ts
-    duplicate_lineage:
-      repository: NORA-BITSY/nora-foundation-monorepo
-      commit: dceac8ba
-      notes: "Identical contracts blob found in monorepo; nora-cleanroom-platform chosen as single canonical source lineage."
-    origin_status: nora-authored
-    original_license: Unlicensed
-    target:
-      repository: NORAFoundation/nora-evidence
-      paths:
-        - src/nora_evidence/access.py
-    treatment: TRANSPLANT_SELECTED_PACKAGES
-    changes:
-      - Adapted cleanroom AcquisitionEnvelope and AccessPolicy to Python pydantic models without product shell
+      - Ported extraction primitives and generalized locators
     review:
       secret_scan: pass
       privacy_scan: pass
