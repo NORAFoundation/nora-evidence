@@ -45,3 +45,27 @@ entries:
       privacy_scan: pass
       license_review: pass
       reviewer: migration-agent
+  - id: PROV-EVID-003
+    source:
+      repository: NORA-BITSY/nora-cleanroom-platform
+      commit: 451f8604
+      paths:
+        - packages/contracts/src/access.ts
+    duplicate_lineage:
+      repository: NORA-BITSY/nora-foundation-monorepo
+      commit: dceac8ba
+      notes: "Identical contracts blob found in monorepo; nora-cleanroom-platform chosen as single canonical source lineage."
+    origin_status: nora-authored
+    original_license: Unlicensed
+    target:
+      repository: NORAFoundation/nora-evidence
+      paths:
+        - src/nora_evidence/access.py
+    treatment: TRANSPLANT_SELECTED_PACKAGES
+    changes:
+      - Adapted cleanroom AcquisitionEnvelope and AccessPolicy to Python pydantic models without product shell
+    review:
+      secret_scan: pass
+      privacy_scan: pass
+      license_review: pass
+      reviewer: migration-agent
