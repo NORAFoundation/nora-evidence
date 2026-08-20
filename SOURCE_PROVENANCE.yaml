@@ -23,3 +23,25 @@ entries:
       privacy_scan: pass
       license_review: pass
       reviewer: migration-agent
+  - id: PROV-EVID-002
+    source:
+      repository: NORA-BITSY/Evidence_EXT
+      commit: 0b58f849
+      paths:
+        - extractor/core.py
+        - extractor/pdf.py
+    origin_status: nora-authored
+    original_license: Unlicensed
+    target:
+      repository: NORAFoundation/nora-evidence
+      paths:
+        - src/nora_evidence/extract.py
+    treatment: REFACTOR_EXTRACT
+    changes:
+      - Stripped jurisdiction-specific regex and tags
+      - Generalized multi-format extraction into Locator-bounded SourceOccurrences
+    review:
+      secret_scan: pass
+      privacy_scan: pass
+      license_review: pass
+      reviewer: migration-agent
