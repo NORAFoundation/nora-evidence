@@ -8,7 +8,8 @@ from nora_evidence.contracts import (
     Artifact,
     Locator,
     LocatorType,
-    SourceOccurrence
+    ReadinessScore,
+    SourceOccurrence,
 )
 
 class EvidenceExtractor:
@@ -92,3 +93,24 @@ class EvidenceExtractor:
         elif suffix in {".mp3", ".wav"}:
             return "audio/wav"
         return "application/octet-stream"
+def compute_sha256(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+def extract_evidence_artifact(file_path: str, custodian: str = "system_extractor") -> tuple[Artifact, List[SourceOccurrence]]:
+    extractor = EvidenceExtractor(custodian=custodian)
+    return extractor.extract_file(file_path)
+
+def score_readiness(artifact: Artifact, occurrences: List[SourceOccurrence]) -> ReadinessScore:
+    reasons = []
+    if not artifact.content_hash:
+        reasons.append("Missing content hash")
+    if not occurrences:
+        reasons.append("No occurrences extracted")
+    is_ready = len(reasons) == 0
+    score = 1.0 if is_ready else 0.0
+    return ReadinessScore(
+        artifact_id=artifact.artifact_id,
+        is_ready=is_ready,
+        score=score,
+        reasons=reasons,
+    )

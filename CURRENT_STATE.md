@@ -14,6 +14,13 @@ The minimum reference vertical slice is complete and verified:
 - `src/nora_evidence/extract.py`: Multi-format evidence dispatcher generating exact Locators and SourceOccurrences.
 - `src/nora_evidence/access.py`: Cleanroom `AcquisitionEnvelope` and `AccessPolicy` data classification.
 
+## Contract Targets — Not Yet Implemented
+
+The following symbols are described in documentation but are **not present** in the current source:
+
+- `EvidenceStore` — canonical domain store backed by Postgres (not SQLite) with Matter/Occurrence schema and migrations
+- `LocatorResolver` — external URL/DOI resolution adapter
+- Object-store adapter for MinIO/S3 binary artifact persistence
 ## Verified
 
 - `make test` / `pytest`: **7 passed in 0.11s**.

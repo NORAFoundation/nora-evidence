@@ -38,6 +38,32 @@ class Artifact(BaseModel):
     acquisition: AcquisitionEvent
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
+    @classmethod
+    def from_connector_envelope(cls, envelope: Any) -> Artifact:
+        env_id = getattr(envelope, "envelope_id", "env-001")
+        sha256 = getattr(envelope, "sha256", "") or ""
+        size = getattr(envelope, "size_bytes", 0)
+        locator = getattr(envelope, "locator", "")
+        acq = AcquisitionEvent(
+            event_id=f"ACQ-{env_id}",
+            source_channel="connector",
+            custodian="system",
+            hash_value=sha256,
+        )
+        return cls(
+            artifact_id=f"ART-{env_id}",
+            mime_type="text/plain" if str(locator).endswith((".txt", ".md")) else "application/octet-stream",
+            byte_size=size,
+            content_hash=sha256,
+            acquisition=acq,
+            metadata={"locator": locator},
+        )
+
+class ReadinessScore(BaseModel):
+    artifact_id: str
+    is_ready: bool
+    score: float
+    reasons: List[str] = Field(default_factory=list)
 class SourceOccurrence(BaseModel):
     occurrence_id: str
     artifact_id: str
